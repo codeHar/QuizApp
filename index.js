@@ -1,8 +1,9 @@
 const express = require("express");
 require("dotenv").config();
 const userRoutes = require("./routes/user.route");
+const collectionRoutes = require("./routes/collection.route");
 
-require("./connectDb");
+require("./config/connectDb");
 
 const PORT = process.env.PORT;
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 //route middlewares
 app.use("/api/user", userRoutes);
+app.use("/api/collection", collectionRoutes);
 
 app.get("/", (req, res) => {
   res.send("What up");

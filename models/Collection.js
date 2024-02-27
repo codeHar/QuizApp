@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { questionSchema } = require("./Question");
 
 const collectionSchema = new mongoose.Schema({
   title: {
@@ -20,7 +21,7 @@ const collectionSchema = new mongoose.Schema({
     default: false,
   },
   questions: {
-    type: [Question],
+    type: [questionSchema],
     required: true,
   },
   createdAt: {
