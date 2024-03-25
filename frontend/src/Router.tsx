@@ -4,6 +4,8 @@ import MyCollections from "./pages/MyCollections";
 import ErrorPage from "./pages/ErrorPage";
 import MainLayout from "./pages/MainLayout";
 import CreateCollection from "./pages/CreateCollection";
+import PlayGame from "./pages/PlayGame";
+import Stats from "./pages/Stats";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,15 @@ const router = createBrowserRouter([
         path: "/create-collection",
         element: <CreateCollection />,
       },
+      {
+        path: "/stats",
+        element: <Stats />,
+      },
     ],
+  },
+  {
+    path: "/play/:collectionId",
+    element: <PlayGame />,
   },
 ]);
 

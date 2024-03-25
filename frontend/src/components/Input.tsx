@@ -6,12 +6,14 @@ const inputSchema = z.object({
   name: z.string(),
   type: z.string().default("text").optional(),
   className: z.string().default("border-").optional(),
+  registerName: z.string().optional(),
 });
 
 type inputType = z.infer<typeof inputSchema>;
 
 export const Input = (props: inputType) => {
   const { name } = props;
+  const { registerName, ...data } = props;
   const { register } = useFormContext();
 
   return (
@@ -20,12 +22,12 @@ export const Input = (props: inputType) => {
         {name}
       </label>
       <input
-        {...props}
-        {...register(name)}
+        {...data}
+        {...register(registerName ?? name)}
         className="border border-gray-700 outline-none rounded-md p-1"
       />
       <ErrorMessage
-        name={name}
+        name={registerName ?? name}
         render={({ message }) => <p className="form__error">{message}</p>}
       />
     </div>
