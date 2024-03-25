@@ -8,7 +8,6 @@ import GameCompleted from "../components/GameCompleted";
 import { Button } from "antd";
 
 const PlayGame = () => {
-  const navigate = useNavigate();
   const [state, dispatch] = useReducer(questionReducer, initialvalue);
   const { collectionId } = useParams();
   const { data, isLoading, error } = useGetMyCollectionsById(
@@ -46,9 +45,6 @@ const PlayGame = () => {
     <div className="play-game">
       <img src={quizBg} className="play-bg" />
       <div className="container py-20">
-        <Button onClick={() => navigate("/my-collections")} className="mb-5">
-          Back
-        </Button>
         {state.isLastQuestion ? (
           <GameCompleted
             collectionId={collectionId!}

@@ -23,7 +23,7 @@ const QuizImages = () => {
   };
 
   return (
-    <div className="quiz-image-container w-52 h-52 p-8  ">
+    <div className="quiz-image-container w-72 h-64 p-8  ">
       <div className="quiz-image-container2 relative w-full h-full">
         {quizImages &&
           quizImages.map((quiz, i) => (
@@ -39,7 +39,7 @@ const QuizImages = () => {
                   : "right-0 bottom-0 translate-x-1/2 translate-y-1/2"
               } `}
             >
-              <img src={quiz} width="70" height="70" />
+              <img src={quiz} width="110" height="110" />
             </figure>
           ))}
       </div>

@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const userRoutes = require("./routes/user.route");
 const collectionRoutes = require("./routes/collection.route");
+const statsRoute = require("./routes/stats.route");
 
 require("./config/connectDb");
 
@@ -17,6 +18,7 @@ app.use(express.json());
 //route middlewares
 app.use("/api/user", userRoutes);
 app.use("/api/collection", collectionRoutes);
+app.use("/api/my-stats", statsRoute);
 
 app.get("/", (req, res) => {
   res.send("What up");

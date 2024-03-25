@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IMyCollection } from "../services";
 import { TState } from "../reducers";
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 type GameProps = {
   data: IMyCollection | undefined;
@@ -14,6 +15,7 @@ type GameProps = {
 };
 
 const Game = ({ data, state, handleSubmitData }: GameProps) => {
+  const navigate = useNavigate();
   const [selectedAnswer, setSelectedAnswer] = useState(-1);
   const questions = data.collections.questions;
   const question = questions[state.questionNo];
@@ -33,6 +35,9 @@ const Game = ({ data, state, handleSubmitData }: GameProps) => {
 
   return (
     <>
+      <Button onClick={() => navigate("/my-collections")} className="mb-5">
+        Back
+      </Button>
       <div className="quiz-header relative border-4 border-gray-500 rounded-3xl px-5 py-10">
         <div className="title-badge rounded-full p-3 bg-white absolute z-10 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <h3 className=" font-bold text-2xl">MindMingle</h3>

@@ -5,6 +5,7 @@ import { Input } from "../components";
 import { useEffect } from "react";
 import axios from "axios";
 import { URLS } from "../consts";
+import { useNavigate } from "react-router-dom";
 
 let renderCount = 0;
 
@@ -33,12 +34,14 @@ const collectionSchema = z.object({
 });
 
 const CreateCollection = () => {
+  const navigate = useNavigate();
   const methods = useForm({
     resolver: zodResolver(collectionSchema),
   });
 
   const {
     handleSubmit,
+    register,
     formState: { errors },
     control,
   } = methods;
@@ -61,25 +64,26 @@ const CreateCollection = () => {
   }, [append]);
 
   const submitData = async (data: any) => {
-    console.log({
-      ...data,
-      createdBy: "65dab80488624adf28f6f8b6",
-    });
-    const res = await axios.post(URLS.COLLECTION.CREATE, {
-      ...data,
-      createdBy: "65dab80488624adf28f6f8b6",
-    });
-    console.log({ res });
-    console.log("resData", res.data);
+    try {
+      console.log({
+        ...data,
+        createdBy: "65dab80488624adf28f6f8b6",
+      });
+      const res = await axios.post(URLS.COLLECTION.CREATE, {
+        ...data,
+        createdBy: "65dab80488624adf28f6f8b6",
+      });
+      navigate("/my-collections");
+    } catch (err) {
+      console.log("error while creating colections ", err);
+    }
   };
 
   return (
     <div className="container create-collection relative h-[calc(100%_-_96px)] overflow-y-auto py-4">
       <div className="p-3 rounded-md bg-white">
         <div className="flex justify-between gap-3 items-center mb-5">
-          <h1 className="title">
-            New Collection<span>RenderCount{renderCount}</span>
-          </h1>
+          <h1 className="title">New Collection</h1>
         </div>
 
         <div className="collection-form-container">
@@ -103,12 +107,21 @@ const CreateCollection = () => {
                         />
                       </div>
                     ))}
-                    <Input
+                    <select
+                      id="cars"
+                      {...register(`questions[${index}].correctAnswer`)}
+                    >
+                      <option value="0">1</option>
+                      <option value="1">2</option>
+                      <option value="2">3</option>
+                      <option value="3">4</option>
+                    </select>
+                    {/* <Input
                       name={`Correct Answer`}
                       registerName={`questions[${index}].correctAnswer`}
-                    />
+                    /> */}
                     <button type="button" onClick={() => remove(index)}>
-                      Remove
+                      Remove Ques
                     </button>
                   </div>
                 </div>

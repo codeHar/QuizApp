@@ -125,7 +125,7 @@ const getStats = async (req, res) => {
       }
     );
 
-    await Stats.create({
+    const stat = await Stats.create({
       correctPoints,
       correctQuestionAnswers,
       incorrectQuestionAnswers,
@@ -141,6 +141,7 @@ const getStats = async (req, res) => {
         totalPoints,
         correctQuestionAnswers,
         incorrectQuestionAnswers,
+        statId: stat.id,
       },
     });
   } catch (err) {
