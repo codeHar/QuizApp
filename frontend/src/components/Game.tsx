@@ -17,7 +17,7 @@ type GameProps = {
 const Game = ({ data, state, handleSubmitData }: GameProps) => {
   const navigate = useNavigate();
   const [selectedAnswer, setSelectedAnswer] = useState(-1);
-  const questions = data.collections.questions;
+  const questions = data?.collections.questions || [];
   const question = questions[state.questionNo];
   const { answerOptions } = question;
 

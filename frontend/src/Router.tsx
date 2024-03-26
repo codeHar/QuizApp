@@ -6,6 +6,7 @@ import MainLayout from "./pages/MainLayout";
 import CreateCollection from "./pages/CreateCollection";
 import PlayGame from "./pages/PlayGame";
 import Stats from "./pages/Stats";
+import StatsDetail from "./pages/StatsDetail";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/stats",
         element: <Stats />,
+      },
+      {
+        path: "/stats-detail/:statsId",
+        element: <StatsDetail />,
       },
     ],
   },

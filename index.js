@@ -18,7 +18,7 @@ app.use(express.json());
 //route middlewares
 app.use("/api/user", userRoutes);
 app.use("/api/collection", collectionRoutes);
-app.use("/api/my-stats", statsRoute);
+app.use("/api/stats", statsRoute);
 
 app.get("/", (req, res) => {
   res.send("What up");

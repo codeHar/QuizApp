@@ -65,11 +65,7 @@ const CreateCollection = () => {
 
   const submitData = async (data: any) => {
     try {
-      console.log({
-        ...data,
-        createdBy: "65dab80488624adf28f6f8b6",
-      });
-      const res = await axios.post(URLS.COLLECTION.CREATE, {
+      await axios.post(URLS.COLLECTION.CREATE, {
         ...data,
         createdBy: "65dab80488624adf28f6f8b6",
       });
@@ -91,7 +87,7 @@ const CreateCollection = () => {
             <form onSubmit={handleSubmit(submitData)}>
               <Input name="title" />
               <Input name="description" />
-              {fields.map((item, index) => (
+              {fields.map((item: any, index) => (
                 <div key={item.id} className="mt-10">
                   <Input
                     name={`Question ${index + 1}`}
@@ -99,7 +95,7 @@ const CreateCollection = () => {
                   />
 
                   <div className="answer-container grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {item?.answerOptions.map((_, answerIndex: number) => (
+                    {item?.answerOptions.map((_: any, answerIndex: number) => (
                       <div key={answerIndex}>
                         <Input
                           name={`Answer ${answerIndex + 1}`}

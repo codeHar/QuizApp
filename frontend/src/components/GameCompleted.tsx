@@ -31,8 +31,6 @@ const GameCompleted = ({
 
   const stats = data?.stats;
 
-  console.log("game Completed data", data);
-
   return (
     <div className="flex flex-col items-center">
       <h3 className="font-bold text-5xl mb-8">Game Completed</h3>
@@ -53,7 +51,9 @@ const GameCompleted = ({
         <Button onClick={() => navigate("/my-collections")}>
           Back to Collections
         </Button>
-        <Button onClick={() => navigate("/my-collections")}>View Detail</Button>
+        <Button onClick={() => navigate(`/stats-detail/${stats?.statId}`)}>
+          View Detail
+        </Button>
       </div>
     </div>
   );

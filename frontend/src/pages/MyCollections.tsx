@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import plus from "../svg/plus";
 import { Collection, useGetMyCollections } from "../services";
 import quizFolder from "../assets/quizFolder.png";
-import { Button } from "antd";
 
 const MyCollections = () => {
   const { data, isLoading } = useGetMyCollections();
@@ -10,8 +9,6 @@ const MyCollections = () => {
   if (isLoading) {
     <p>Loading...</p>;
   }
-
-  console.log({ data });
 
   return (
     <div className="container my-collections relative h-[calc(100%_-128px)]">

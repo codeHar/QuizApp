@@ -1,6 +1,6 @@
 export function getRating(correctPoints?: number, totalPoints?: number) {
   if (!correctPoints || !totalPoints) {
-    return "no rating";
+    return "noob max ultra";
   }
 
   const percentage = (correctPoints / totalPoints) * 100;

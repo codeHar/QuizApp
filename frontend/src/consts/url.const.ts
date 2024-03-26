@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3000/api";
+const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/api"
+    : "https://mind-mingle.onrender.com/api";
 
 export const URLS = {
   COLLECTION: {
@@ -11,6 +14,7 @@ export const URLS = {
       `${baseUrl}/collection/stats/${collectionId}`,
   },
   STATS: {
-    GET: (userId: string) => `${baseUrl}/my-stats/${userId}`,
+    GET: (userId: string) => `${baseUrl}/stats/${userId}`,
+    GET_DETAIL: (statsId: string) => `${baseUrl}/stats/detail/${statsId}`,
   },
 };

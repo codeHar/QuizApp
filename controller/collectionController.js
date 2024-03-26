@@ -4,7 +4,6 @@ const catchError = require("../utils/CatchError");
 
 const createCollection = async (req, res) => {
   try {
-    console.log({ req: req?.body });
     const { title, description, createdBy, questions } = req.body;
 
     if (!title) {
@@ -18,8 +17,6 @@ const createCollection = async (req, res) => {
     if (questions?.length == 0) {
       throw new Error("At least one questions is required");
     }
-
-    console.log(title, description, createdBy, questions);
 
     const collection = await Collection.create({
       title,
@@ -40,7 +37,6 @@ const createCollection = async (req, res) => {
 const getCollectionsOfUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    console.log({ userId });
 
     const collections = await Collection.find({
       createdBy: userId,
@@ -58,7 +54,6 @@ const getCollectionsOfUser = async (req, res) => {
 const getCollectionDetail = async (req, res) => {
   try {
     const { collectionId } = req.params;
-    console.log({ collectionId });
 
     const collections = await Collection.findById(collectionId);
 
@@ -73,22 +68,17 @@ const getCollectionDetail = async (req, res) => {
 
 const getStats = async (req, res) => {
   try {
-    console.log("getting stats");
     const { collectionId } = req.params;
-    console.log({ collectionId });
     const { questionAnswers } = req.body;
 
     if (!questionAnswers || questionAnswers?.length == 0) {
       throw new Error("Question and Answers not valid");
     }
 
-    console.log({ questionAnswers });
-
     const collections = await Collection.findById(collectionId);
     const userId = collections?.createdBy;
     const correctQuestionAnswersList = collections?.questions;
 
-    console.log("damn");
     const {
       correctPoints,
       correctQuestionAnswers,
@@ -101,7 +91,7 @@ const getStats = async (req, res) => {
             ...total.correctQuestionAnswers,
             {
               ...questionAnswers[index],
-              answer: current?.answerOptions[index],
+              answer: current?.answerOptions[questionAnswers[index].answer],
             },
           ];
           total.correctPoints += 1;
@@ -110,7 +100,7 @@ const getStats = async (req, res) => {
             ...total.incorrectQuestionAnswers,
             {
               ...questionAnswers[index],
-              answer: current?.answerOptions[index],
+              answer: current?.answerOptions[questionAnswers[index].answer],
             },
           ];
         }
@@ -131,7 +121,7 @@ const getStats = async (req, res) => {
       incorrectQuestionAnswers,
       totalPoints,
       user: userId,
-      collectionName: collections.title,
+      collection: collections.id,
     });
 
     res.status(200).json({

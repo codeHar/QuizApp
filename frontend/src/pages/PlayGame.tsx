@@ -1,11 +1,10 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import quizBg from "../assets/quizBg2.jpg";
 import { useGetMyCollectionsById } from "../services";
 import { useReducer } from "react";
 import { initialvalue, questionReducer } from "../reducers";
 import Game from "../components/Game";
 import GameCompleted from "../components/GameCompleted";
-import { Button } from "antd";
 
 const PlayGame = () => {
   const [state, dispatch] = useReducer(questionReducer, initialvalue);
@@ -25,9 +24,6 @@ const PlayGame = () => {
   if (!data) {
     return;
   }
-
-  console.log("game data", data);
-  console.log("stateData", state);
 
   const handleSubmitData = (
     question: string,

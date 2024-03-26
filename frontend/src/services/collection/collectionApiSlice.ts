@@ -4,7 +4,7 @@ import { QuestionAnswer } from "../../reducers";
 
 export interface IMyCollections {
   msg: string;
-  collections: Collection;
+  collections: Collection[];
 }
 
 export interface IMyCollection {
@@ -44,6 +44,7 @@ export interface Stats {
   incorrectQuestionAnswers: CorrectQuestionAnswer[];
   correctPoints: number;
   totalPoints: number;
+  statId: string;
 }
 
 export interface CorrectQuestionAnswer {

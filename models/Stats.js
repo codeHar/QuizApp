@@ -18,8 +18,10 @@ const statsSchema = new mongoose.Schema({
       answer: String,
     },
   ],
-  collectionName: {
-    type: String,
+  collection: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Collection",
+    required: true,
   },
   correctPoints: {
     type: Number,
