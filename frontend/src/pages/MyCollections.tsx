@@ -11,9 +11,9 @@ const MyCollections = () => {
   }
 
   return (
-    <div className="container my-collections relative h-[calc(100%_-128px)]">
-      <div className="my-4 p-3 rounded-md bg-white h-full">
-        <div className="flex flex-col sm:flex-row justify-between gap-3 mb-10 items-start">
+    <div className="container page-layout relative">
+      <div className=" p-3 rounded-md bg-white flex-grow">
+        <div className="flex flex-col sm:flex-row justify-between gap-3 mb-10 items-start sm:items-center">
           <h1 className="title">My Collections</h1>
 
           <Link to={"/create-collection"} className="secondary-btn">
@@ -26,13 +26,24 @@ const MyCollections = () => {
           {data?.collections.map((collection: Collection, index: number) => (
             <div
               key={"collection" + index}
-              className="border border-gray-300 p-2 rounded-md"
+              className="collection-box p-3 rounded-md"
             >
-              <figure className="mb-5">
-                <img src={quizFolder} />
+              <figure className="mb-5 h-[150px] flex justify-center items-center">
+                <img
+                  src={quizFolder}
+                  width={100}
+                  height={100}
+                  className="transition-all duration-200"
+                />
               </figure>
-              <h5 className="font-semibold mb-3">{collection?.title}</h5>
-              <Link to={`/play/${collection._id}`}>Play</Link>
+              <h5 className="mb-3 text-lg font-medium">{collection?.title}</h5>
+
+              <Link
+                to={`/play/${collection._id}`}
+                className="secondary-btn flex justify-center"
+              >
+                Play
+              </Link>
             </div>
           ))}
         </div>

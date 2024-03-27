@@ -12,7 +12,7 @@ const StatsBox = ({ stat }: { stat: AllStat }) => {
       <img src={statsImg} width={50} height={50} />
 
       <div className="w-[calc(100%_-_50px)]">
-        <h5 className="font-semibold mb-2">{stat?.collectionName}</h5>
+        <h5 className="font-semibold mb-2 text-lg">{stat?.collectionName}</h5>
         <p className="mb-2">
           Points Achieved:
           <span>
@@ -25,7 +25,7 @@ const StatsBox = ({ stat }: { stat: AllStat }) => {
             {getRating(stat.correctPoints, stat.totalPoints)}
           </span>
         </p>
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-end mt-5">
           <Button onClick={() => navigate(`/stats-detail/${stat.id}`)}>
             View Detail
           </Button>

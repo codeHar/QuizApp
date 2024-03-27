@@ -5,7 +5,7 @@ const NavBar = () => {
     <nav className="bg-white z-10 relative">
       <div className="container nav-container flex gap-3 justify-between items-center min-h-24">
         <Link to={"/"}>
-          <h2 className="text-4xl font-semibold text-black text-primary">
+          <h2 className="text-2xl font-semibold text-black text-primary">
             MingMingle
           </h2>
         </Link>

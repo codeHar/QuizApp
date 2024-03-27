@@ -51,7 +51,11 @@ const GameCompleted = ({
         <Button onClick={() => navigate("/my-collections")}>
           Back to Collections
         </Button>
-        <Button onClick={() => navigate(`/stats-detail/${stats?.statId}`)}>
+        <Button
+          type="primary"
+          danger
+          onClick={() => navigate(`/stats-detail/${stats?.statId}`)}
+        >
           View Detail
         </Button>
       </div>

@@ -21,12 +21,17 @@ const Game = ({ data, state, handleSubmitData }: GameProps) => {
   const question = questions[state.questionNo];
   const { answerOptions } = question;
 
-  const handleGameData = () => {
-    if (selectedAnswer == -1) {
+  const handleGameData = (answer?: number) => {
+    console.log({ answer });
+    if (answer == undefined && selectedAnswer == -1) {
       return;
     }
     const isLastQuestion = state.questionNo == questions.length - 1;
-    handleSubmitData(question.text, selectedAnswer, isLastQuestion);
+    handleSubmitData(
+      question.text,
+      answer != undefined ? answer : selectedAnswer,
+      isLastQuestion
+    );
   };
 
   useEffect(() => {
@@ -43,7 +48,11 @@ const Game = ({ data, state, handleSubmitData }: GameProps) => {
           <h3 className=" font-bold text-2xl">MindMingle</h3>
         </div>
 
-        <h1 className="text-center">
+        <span className="absolute right-0 top-0 -translate-y-[calc(100%_+_12px)]">
+          {state.questionNo + 1}/{questions.length}
+        </span>
+
+        <h1 className="text-center text-2xl md:text-4xl font-semibold !leading-8 md:!leading-[48px]">
           {data?.collections?.questions[state.questionNo]?.text}
         </h1>
       </div>
@@ -53,10 +62,11 @@ const Game = ({ data, state, handleSubmitData }: GameProps) => {
           answerOptions.map((answer: string, i: number) => (
             <div
               className={
-                "quiz-option relative border-4 border-gray-500 rounded-3xl p-3 cursor-pointer " +
+                "quiz-option relative border-4 border-gray-500 rounded-3xl p-3 flex justify-center items-center cursor-pointer " +
                 (i === selectedAnswer ? "border-green-500" : "")
               }
               key={"answer" + i}
+              onDoubleClick={() => handleGameData(i)}
               onClick={() =>
                 setSelectedAnswer((prevValue) => (prevValue !== i ? i : -1))
               }
@@ -67,7 +77,9 @@ const Game = ({ data, state, handleSubmitData }: GameProps) => {
       </div>
 
       <div className="flex justify-end mt-5">
-        <Button onClick={handleGameData}>Submit Answer</Button>
+        <Button type="primary" danger onClick={() => handleGameData()}>
+          Submit Answer
+        </Button>
       </div>
     </>
   );

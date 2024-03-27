@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetStatsDetail } from "../services/stats";
 import { getRating } from "../utils";
 
@@ -18,12 +18,18 @@ const StatsDetail = () => {
 
   return (
     <div className="container my-collections relative h-[calc(100%_-128px)] overflow-auto">
-      <div className="my-4 p-3 rounded-md bg-white">
+      <div className="my-4 p-3 rounded-md bg-white relative">
+        <Link
+          to={"/stats"}
+          className="primary-btn absolute left-0 top-0 translate-x-4 translate-y-4"
+        >
+          Back
+        </Link>
         <h3 className="text-center font-bold text-2xl mb-10">Stats Detail</h3>
 
         <div>
           <h5 className="font-semibold mb-2">
-            Collection Title:{" "}
+            Collection Title:
             <span className="font-medium ml-2">{stat?.collectionName}</span>
           </h5>
           <h5 className="mb-2 font-semibold">

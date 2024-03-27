@@ -7,8 +7,6 @@ import axios from "axios";
 import { URLS } from "../consts";
 import { useNavigate } from "react-router-dom";
 
-let renderCount = 0;
-
 const collectionSchema = z.object({
   title: z
     .string({
@@ -50,8 +48,6 @@ const CreateCollection = () => {
     control,
     name: "questions",
   });
-
-  renderCount++;
 
   console.log(errors);
 
@@ -105,6 +101,7 @@ const CreateCollection = () => {
                     ))}
                     <select
                       id="cars"
+                      className="p-2 border border-gray-500 rounded-md"
                       {...register(`questions[${index}].correctAnswer`)}
                     >
                       <option value="0">1</option>
@@ -112,19 +109,20 @@ const CreateCollection = () => {
                       <option value="2">3</option>
                       <option value="3">4</option>
                     </select>
-                    {/* <Input
-                      name={`Correct Answer`}
-                      registerName={`questions[${index}].correctAnswer`}
-                    /> */}
-                    <button type="button" onClick={() => remove(index)}>
+                    <button
+                      type="button"
+                      className="accent-btn"
+                      onClick={() => remove(index)}
+                    >
                       Remove Ques
                     </button>
                   </div>
                 </div>
               ))}
-              <div className="mt-5">
+              <div className="mt-10 flex gap-3 justify-between">
                 <button
                   type="button"
+                  className="primary-btn"
                   onClick={() => {
                     append({
                       text: "",
@@ -135,7 +133,7 @@ const CreateCollection = () => {
                 >
                   Add Question
                 </button>
-                <button>Submit</button>
+                <button className="secondary-btn">Submit</button>
               </div>
             </form>
           </FormProvider>
