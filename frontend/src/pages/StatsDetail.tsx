@@ -48,9 +48,9 @@ const StatsDetail = () => {
           <div>
             <h5 className="font-semibold mb-3">Correct Answers</h5>
             {stat?.correctQuestionAnswers.map((qa, i: number) => (
-              <div key={i} className="mb-3">
+              <div key={i} className="mb-5">
                 <h5 className="mb-1">
-                  <span className="mr-2">{i + 1})</span>
+                  <span className="mr-2 font-bold">{i + 1})</span>
                   {qa.question}
                 </h5>
                 <p className="ml-6 text-green-500">{qa.answer}</p>
@@ -62,12 +62,20 @@ const StatsDetail = () => {
             <div>
               <h5 className="font-semibold mb-3">Incorrect Answers</h5>
               {stat?.incorrectQuestionAnswers.map((qa, i: number) => (
-                <div key={i} className="mb-3">
+                <div key={i} className="mb-5">
                   <h5 className="mb-1">
-                    <span className="mr-2">{i + 1})</span>
+                    <span className="mr-2 font-bold">{i + 1})</span>
                     {qa.question}
                   </h5>
                   <p className="ml-6 text-red-500">{qa.answer}</p>
+                  {qa.correctAnswer && (
+                    <p className="ml-6 font-semibold mt-1">
+                      Correct Answer:
+                      <span className="text-green-500 font-medium ml-2">
+                        {qa.correctAnswer}
+                      </span>
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

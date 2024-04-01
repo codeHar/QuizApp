@@ -101,6 +101,7 @@ const getStats = async (req, res) => {
             {
               ...questionAnswers[index],
               answer: current?.answerOptions[questionAnswers[index].answer],
+              correctAnswer: current?.answerOptions[current?.correctAnswer],
             },
           ];
         }

@@ -31,6 +31,7 @@ export interface StatsDetail {
 export interface QuestionAnswer {
   question: string;
   answer?: string;
+  correctAnswer?: string;
   _id: string;
 }
 

@@ -16,6 +16,7 @@ const statsSchema = new mongoose.Schema({
     {
       question: String,
       answer: String,
+      correctAnswer: String,
     },
   ],
   collection: {

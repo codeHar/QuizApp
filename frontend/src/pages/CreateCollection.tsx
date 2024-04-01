@@ -104,7 +104,9 @@ const CreateCollection = () => {
                       className="p-2 border border-gray-500 rounded-md"
                       {...register(`questions[${index}].correctAnswer`)}
                     >
-                      <option value="0">1</option>
+                      <option value="0" selected>
+                        1
+                      </option>
                       <option value="1">2</option>
                       <option value="2">3</option>
                       <option value="3">4</option>
